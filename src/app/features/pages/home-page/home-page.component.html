@@ -18,7 +18,15 @@
 
     } @else {
     <div class="col-12 pt-5">
-        <app-table [dataTable]="data" [tableTitles]="pessoasTitle" [tableItemOrder]="pessoasItemOrder"></app-table>
+        <app-table 
+            [dataTable]="data" 
+            [tableTitles]="pessoasTitle" 
+            [tableItemOrder]="pessoasItemOrder" 
+            [editButton]="true" 
+            (deleteElementId)="deletePessoa($event)"
+            elementToBeDeleted="pessoaId"
+            classStyles="table table-striped"
+        ></app-table>
     </div>
 
     }

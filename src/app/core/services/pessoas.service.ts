@@ -5,6 +5,7 @@ import { IPessoasResponse } from '../interfaces/pessoas-response/pessoas-respons
 import { Observable, catchError, map} from 'rxjs';
 import { IPessoa } from '../interfaces/pessoas-response/pessoa.interface';
 import { ToastComponent } from '../../shared/components/toast/toast.component';
+import { environment } from '../../../environment/environment';
 
 @Injectable({ providedIn: 'root' })
 export class PessoasService {
@@ -14,7 +15,7 @@ export class PessoasService {
 	) { }
 
 	apiURL = "https://www.selida.com.br/avaliacaotecnica/api/Pessoas";
-	apiKey = '88918406-70BC-4E1D-A3B3-F8005C2F03FC';
+	apiKey = environment.apiKey;
 	headers = new HttpHeaders({ 'Chave': this.apiKey });
 
 
