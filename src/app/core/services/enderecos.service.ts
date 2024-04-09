@@ -5,7 +5,7 @@ import { Observable, catchError, map} from 'rxjs';
 import { ToastComponent } from '../../shared/components/toast/toast.component';
 import { IEndereco } from '../interfaces/enderecos-response/endereco.interface';
 import { IEnderecosResponse } from '../interfaces/enderecos-response/enderecos-response.interface';
-import { environment } from '../../../environment/environment';
+import { environment } from '../../../../environment';
 
 @Injectable({ providedIn: 'root' })
 export class EnderecoService {
