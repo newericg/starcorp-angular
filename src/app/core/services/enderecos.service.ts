@@ -51,7 +51,6 @@ export class EnderecoService {
 	public deleteEndereco(id: string): Observable<unknown> {
 		return this.apiService.delete(`${this.apiURL}/${id}`, this.headers).pipe(
 			map((res) => {
-				console.log(res)
 				this.toastComponent.toastService.show('Deletado!', `Deletado com sucesso!`, 'text-bg-success')
 			}),
 			catchError(err => {

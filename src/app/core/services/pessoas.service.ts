@@ -34,7 +34,7 @@ export class PessoasService {
 		)
 	}
 
-	public postPessoas(data: any) {
+	public postPessoas(data: any, form: any) {
 		return this.apiService.post(
 			this.apiURL,
 			{
@@ -50,6 +50,7 @@ export class PessoasService {
 			next: (data: any) => {
 				console.log(data)
 				this.toastComponent.toastService.show('Salvo!', `Salvo com sucesso!`, 'text-bg-success')
+				form.reset()
 			},
 			error: (err: any) => {
 				console.log(err)
