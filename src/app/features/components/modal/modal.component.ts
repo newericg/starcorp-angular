@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, Output, TemplateRef } from '@angular/core';
+import { Component, inject, Input, Output, TemplateRef } from '@angular/core';
 
 import { ModalDismissReasons, NgbDatepickerModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -11,11 +11,14 @@ import { ModalDismissReasons, NgbDatepickerModule, NgbModal } from '@ng-bootstra
 })
 export class ModalComponent {
 
+  
+
+  @Input() public user: any;
   private modalService = inject(NgbModal);
 	closeResult = '';
 
-	open(component: any) {
-		this.modalService.open(component, {size: 'lg', backdrop:'static', windowClass : "myCustomModalClass"}).result.then(
+	open(component: any, data?: any) {
+		const modalRef = this.modalService.open(component, {size: 'lg', backdrop:'static', windowClass : "myCustomModalClass"}).result.then(
 			(result) => {
 				this.closeResult = `Closed with: ${result}`;
 			},
@@ -23,7 +26,11 @@ export class ModalComponent {
 				this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
 			},
 		);
+    data = this.modalService.activeInstances
 	}
+
+  close() {
+  }
 
 	private getDismissReason(reason: any): string {
 		switch (reason) {

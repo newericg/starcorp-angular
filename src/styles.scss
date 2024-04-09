@@ -1,1 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
+html,
+body {
+    min-height: 100vh;
+    height: auto;
+    margin: 0;
+}
+
+* {
+    margin: 0;
+    padding: 0
+}
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';
+
+
+.modal-lg {
+    --bs-modal-width: 80vw
+}
+
+// ::view-transition-old(root) {
+//     animation: exit .5s ease 0s 1 normal forwards;
+//   }
+  
+//   ::view-transition-new(root) {
+//     animation: enter .5s alternate 0s 1 normal forwards;
+//   }

@@ -1,46 +1,114 @@
-<div class="container p-5">
-    <h2>Nova Pessoa</h2>
-    <form [formGroup]="pessoaForm" class="border p-4">
-        <h4 class="text-center">Dados Pessoais</h4>
-        <div class="form-row w-100 row">
-            <div class="form-group col-md-6 d-flex">
-                <label for="name">Nome</label>
-                <input type="text" class="form-control" id="name" placeholder="Nome" formControlName="nome">
+<div class="container p-1">
+    <h2 class="text-start">Nova Pessoa</h2>
+    <div class="container border">
+        <form [formGroup]="pessoaForm" class=" p-4 needs-validation-pessoa" novalidate>
+            <h4 class="text-center">Dados Pessoais</h4>
+            <div class="form-row w-100 row justify-content-between my-3">
+                <div class="form-group col-md-6 d-flex justify-content-between my-2">
+                    <label class="text-center" for="name">Nome</label>
+                    @if (loading) {
+                        <p class="placeholder-glow placeholder-lg w-50 h-100">
+                            <span class="placeholder col-12 h-100 rounded"></span>
+                          </p>
+                        
+                    } @else {
+                        <input type="text" class="form-control ms-5 w-50" id="name" placeholder="Nome" formControlName="nome"
+                        value="Mark" required>
+                    }
+                    
+                </div>
+                <div class="form-group col-md-6 d-flex justify-content-between my-2">
+                    <label class="text-center" for="age">Idade</label>
+                    @if (loading) {
+                        <p class="placeholder-glow w-50 h-100">
+                            <span class="placeholder col-12 h-100 rounded"></span>
+                          </p>
+                        
+                    } @else {
+                        <input type="number" class="form-control ms-5 w-50" id="age" placeholder="Idade"
+                        formControlName="idade" value="Mark" required >
+                    }
+                    
+                </div>
             </div>
-            <div class="form-group col-md-6 d-flex">
-                <label for="age">Idade</label>
-                <input type="password" class="form-control" id="age" placeholder="Idade" formControlName="idade">
+            <div class="form-row w-100 row justify-content-between my-3">
+                <div class="form-group col-md-6 d-flex justify-content-between">
+                    <label class="text-center" for="email">Email</label>
+                    <input type="email" class="form-control ms-5 w-50" id="email" placeholder="Email" formControlName="email" value="Mark" required>
+                </div>
+                <div class="form-group col-md-6 d-flex justify-content-between">
+                    <label class="" for="dataNascimento">Data de Nascimento</label>
+                    <div class="input-group ms-5 w-50">
+                        <input name="dp" ngbDatepicker #d="ngbDatepicker" class="form-control" id="dataNascimento"
+                            placeholder="dd-mm-aaaa" formControlName="dataNascimento" value="Mark" required/>
+                        <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()"
+                            type="button"></button>
+                    </div>
+    
+                </div>
             </div>
+            <div class="form-row w-100 row justify-content-between my-3">
+                <div class="form-group col-md-6 d-flex justify-content-between">
+                    <label for="phone">Telefone</label>
+                    <input type="text" class="form-control ms-5 w-50" id="phone" placeholder="Telefone" formControlName="telefone" value="Mark" required>
+                </div>
+                <div class="form-group col-md-6 d-flex justify-content-between">
+                    <label for="celphone">Celular</label>
+                    <input type="text" class="form-control ms-5 w-50" id="celphone" placeholder="Celular" formControlName="celular" value="Mark" required>
+                </div>
+            </div>
+            
+        </form>
+        <hr class="solid">
+        <form [formGroup]="enderecoForm" class="p-4 needs-validation" novalidate>
+            <h4 class="text-center">Endereços</h4>
+            <div class="form-row w-100 row justify-content-between my-3">
+                <div class="form-group col-md-6 d-flex justify-content-between">
+                    <label class="text-center" for="name">Logradouro</label>
+                    <input type="text" class="form-control ms-5 w-50" id="name" placeholder="" formControlName="logradouro"
+                        value="Mark" required>
+                </div>
+                <div class="form-group col-md-6 d-flex justify-content-between">
+                    <label class="text-center" for="number">Numero</label>
+                    <input type="number" class="form-control ms-5 w-50" id="number" placeholder=""
+                        formControlName="numero" value="Mark" required>
+                </div>
+            </div>
+            <div class="form-row w-100 row justify-content-between my-3">
+                <div class="form-group col-md-6 d-flex justify-content-between">
+                    <label class="text-center" for="name">Bairro</label>
+                    <input type="text" class="form-control ms-5 w-50" id="name" placeholder="" formControlName="bairro"
+                        value="Mark" required>
+                </div>
+                <div class="form-group col-md-6 d-flex justify-content-between">
+                    <label class="text-center" for="number">Cidade</label>
+                    <input type="number" class="form-control ms-5 w-50" id="number" placeholder=""
+                        formControlName="cidade" value="Mark" required>
+                </div>
+            </div>
+            <div class="form-row w-100 row justify-content-between my-3">
+                <div class="form-group col-md-6 d-flex justify-content-between">
+                    <label class="text-center" for="name">Bairro</label>
+                    <input type="text" class="form-control ms-5 w-50" id="name" placeholder="" formControlName="bairro"
+                        value="Mark" required>
+                </div>
+                <div class="col-6 d-flex justify-content-end">
+                    <button routerLink="/" class="btn btn-primary">Adicionar</button>
+                </div>
+            </div>
+        </form>
+        <div class="container px-5">
+            <app-table [dataTable]="" [tableTitles]="enderecoTitle" [tableItemOrder]="enderecoItemOrder"></app-table>
         </div>
-        <div class="form-row w-100 row">
-            <div class="form-group col-md-6">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" placeholder="Email">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="dataNascimento">Data de Nascimento</label>
-                <input type="date" class="form-control" id="dataNascimento" placeholder="">
-            </div>
-        </div>
-        <div class="form-row w-100 row">
-            <div class="form-group col-md-6">
-                <label for="phone">Telefone</label>
-                <input type="number" class="form-control" id="phone" placeholder="Telefone">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="celphone">Celular</label>
-                <input type="number" class="form-control" id="celphone" placeholder="Celular">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-6">
-                <button class="btn btn-primary mt-5">Voltar</button>
+        
+        <div class="row p-4">
+            <div class="col-6 d-flex justify-content-start">
+                <button routerLink="/" class="btn btn-primary mt-5">Voltar</button>
             </div>
             <div class="col-6 d-flex justify-content-end">
-                <button class="btn btn-primary mt-5">Salvar</button>
+                <button class="btn btn-primary mt-5" (click)="onSubmit()">Submit</button>
             </div>
         </div>
-        <hr class="solid">
-        <h4 class="text-center">Endereços</h4>
-    </form>
+    </div>
+
 </div>
