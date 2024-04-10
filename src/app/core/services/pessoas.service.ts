@@ -5,7 +5,7 @@ import { IPessoasResponse } from '../interfaces/pessoas-response/pessoas-respons
 import { Observable, catchError, map} from 'rxjs';
 import { IPessoa } from '../interfaces/pessoas-response/pessoa.interface';
 import { ToastComponent } from '../../shared/components/toast/toast.component';
-import { environment } from '../../../environment/environment';
+import { environment } from '../../../../environment';
 
 @Injectable({ providedIn: 'root' })
 export class PessoasService {
@@ -75,9 +75,11 @@ export class PessoasService {
 		).subscribe({
 			next: (data: any) => {
 				console.log(data)
+				this.toastComponent.toastService.show('Salvo!', `Salvo com sucesso!`, 'text-bg-success')
 			},
-			error: (err: Error) => {
+			error: (err: any) => {
 				console.log(err)
+				this.toastComponent.toastService.show('Erro ao salvar!', `${err.error.errors[0]}`, 'text-bg-danger')
 			}
 		})
 	}

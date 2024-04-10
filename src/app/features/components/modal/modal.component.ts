@@ -1,4 +1,4 @@
-import { Component, inject, Input, Output, TemplateRef } from '@angular/core';
+import { Component, inject, Input} from '@angular/core';
 
 import { ModalDismissReasons, NgbDatepickerModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 

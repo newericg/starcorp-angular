@@ -1,10 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewChecked, ChangeDetectorRef, Component, Input, OnInit, Output, ViewChild, inject } from '@angular/core';
+import { AfterViewChecked, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterOutlet, RouterLink, RouterLinkActive, ActivatedRoute } from '@angular/router';
 import { NgbAlertModule, NgbDatepickerModule, NgbDateStruct, NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 import { JsonPipe } from '@angular/common';
-import { DatepickerComponent } from '../../../shared/components/datepicker/datepicker.component';
 import { TableComponent } from '../table/table.component';
 import { NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { PessoasService } from '../../../core/services/pessoas.service';
@@ -20,7 +19,7 @@ import { EnderecoService } from '../../../core/services/enderecos.service';
   selector: 'app-form',
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule, RouterOutlet, RouterLink, RouterLinkActive, NgbDatepickerModule,
-    NgbAlertModule, FormsModule, JsonPipe, DatepickerComponent, TableComponent, HttpClientModule,
+    NgbAlertModule, FormsModule, JsonPipe, TableComponent, HttpClientModule,
     CommonModule, NgxMaskDirective, NgxMaskPipe, NgbToastModule, ToastComponent],
   providers: [PessoasService, ApiHttpService, provideNgxMask()],
   templateUrl: './form.component.html',
@@ -70,7 +69,7 @@ export class FormComponent implements OnInit, AfterViewChecked {
     this.pessoaForm = new FormGroup({
       nome: new FormControl("", [Validators.required]),
       idade: new FormControl("", [Validators.required, Validators.maxLength(3)]),
-      email: new FormControl("", [Validators.required]),
+      email: new FormControl("", [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
       dataNascimento: new FormControl("", [Validators.required]),
       telefone: new FormControl("", [Validators.required, Validators.minLength(10)]),
       celular: new FormControl("", [Validators.required, Validators.minLength(11)]),
@@ -153,6 +152,7 @@ export class FormComponent implements OnInit, AfterViewChecked {
     this.dateFormatFix()
     if (this.pessoaId) {
       this.pessoasService.putPessoa(this.pessoaForm.value, this.pessoaId)
+      this.setFormPessoa()
 
     } else {
       this.pessoasService.postPessoas(this.pessoaForm.value, this.pessoaForm)

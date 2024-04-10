@@ -12,8 +12,9 @@
                     </p>
 
                     } @else {
-                    <input type="text" class="form-control ms-5 w-50" id="name" placeholder="Nome"
-                        formControlName="nome" value="Mark" required>
+                    <input [class.is-invalid]="pessoaForm.get('nome')?.invalid && pessoaForm.get('nome')?.touched"
+                        type="text" class="form-control ms-5 w-50" id="name" placeholder="Nome" formControlName="nome"
+                        value="Mark" required>
                     }
 
                 </div>
@@ -25,7 +26,8 @@
                     </p>
 
                     } @else {
-                    <input type="number" class="form-control ms-5 w-50" id="age" placeholder="Idade"
+                    <input [class.is-invalid]="pessoaForm.get('idade')?.invalid && pessoaForm.get('idade')?.touched"
+                        type="number" class="form-control ms-5 w-50" id="age" placeholder="Idade"
                         formControlName="idade" value="Mark" required>
                     }
 
@@ -40,7 +42,8 @@
                     </p>
 
                     } @else {
-                    <input type="email" class="form-control ms-5 w-50" id="email" placeholder="Email"
+                    <input [class.is-invalid]="pessoaForm.get('email')?.invalid && pessoaForm.get('email')?.touched"
+                        type="email" class="form-control ms-5 w-50" id="email" placeholder="Email"
                         formControlName="email" value="Mark" required>
                     }
                 </div>
@@ -73,7 +76,9 @@
                     </p>
 
                     } @else {
-                    <input type="text" class="form-control ms-5 w-50" id="phone" placeholder="Telefone"
+                    <input
+                        [class.is-invalid]="pessoaForm.get('telefone')?.invalid && pessoaForm.get('telefone')?.touched"
+                        type="text" class="form-control ms-5 w-50" id="phone" placeholder="Telefone"
                         formControlName="telefone" value="Mark" required>
 
                     }
@@ -86,7 +91,8 @@
                     </p>
 
                     } @else {
-                    <input type="text" class="form-control ms-5 w-50" id="celphone" placeholder="Celular"
+                    <input [class.is-invalid]="pessoaForm.get('celular')?.invalid && pessoaForm.get('celular')?.touched"
+                        type="text" class="form-control ms-5 w-50" id="celphone" placeholder="Celular"
                         formControlName="celular" value="Mark">
 
                     }
@@ -101,57 +107,62 @@
                 <div class="form-group col-md-6 d-flex justify-content-between">
                     <label class="text-center" for="name">Logradouro</label>
                     <input type="text" class="form-control ms-5 w-50" id="name" placeholder=""
-                        formControlName="logradouro" value="Mark" required>
+                        formControlName="logradouro" value="Mark"
+                        [class.is-invalid]="enderecoForm.get('logradouro')?.invalid && enderecoForm.get('logradouro')?.touched"
+                        required>
                 </div>
                 <div class="form-group col-md-6 d-flex justify-content-between">
                     <label class="text-center" for="number">Numero</label>
                     <input type="text" class="form-control ms-5 w-50" id="number" placeholder=""
-                        formControlName="numero" value="Mark" mask="0000" required>
+                        formControlName="numero" value="Mark" mask="9999"
+                        [class.is-invalid]="enderecoForm.get('numero')?.invalid && enderecoForm.get('numero')?.touched"
+                        required>
                 </div>
             </div>
             <div class="form-row w-100 row justify-content-between my-3">
                 <div class="form-group col-md-6 d-flex justify-content-between">
                     <label class="text-center" for="name">Bairro</label>
                     <input type="text" class="form-control ms-5 w-50" id="name" placeholder="" formControlName="bairro"
-                        value="Mark" required>
+                        value="Mark"
+                        [class.is-invalid]="enderecoForm.get('bairro')?.invalid && enderecoForm.get('bairro')?.touched"
+                        required>
                 </div>
                 <div class="form-group col-md-6 d-flex justify-content-between">
                     <label class="text-center" for="number">Cidade</label>
                     <input type="text" class="form-control ms-5 w-50" id="number" placeholder=""
-                        formControlName="cidade" value="Mark" required>
+                        formControlName="cidade" value="Mark"
+                        [class.is-invalid]="enderecoForm.get('cidade')?.invalid && enderecoForm.get('cidade')?.touched"
+                        required>
                 </div>
             </div>
             <div class="form-row w-100 row justify-content-between my-3">
                 <div class="form-group col-md-6 d-flex justify-content-between">
                     <label class="text-center" for="name">UF</label>
                     <input type="text" class="form-control ms-5 w-50" id="name" placeholder="" formControlName="uf"
-                        value="Mark" mask="UU" required>
+                        value="Mark" mask="UU"
+                        [class.is-invalid]="enderecoForm.get('uf')?.invalid && enderecoForm.get('uf')?.touched"
+                        required>
                 </div>
                 <div class="col-6 d-flex justify-content-end">
-                    <button class="btn btn-primary" (click)="onSubmitEndereco()" [disabled]="enderecoForm.invalid || !pessoaId">Adicionar</button>
+                    <button class="btn btn-primary" (click)="onSubmitEndereco()"
+                        [disabled]="enderecoForm.invalid || !pessoaId">Adicionar</button>
                 </div>
             </div>
         </form>
         <div class="container px-5">
             @if (loading) {
-                <div class="col-12 h-75 d-flex align-items-center justify-content-center pt-5">
-                    <div class="spinner-border text-primary" role="status">
-                        <span class="visually-hidden">Loading...</span>
-                    </div>
+            <div class="col-12 h-75 d-flex align-items-center justify-content-center pt-5">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
                 </div>
-            
-                } @else {
-                    <app-table 
-                        [dataTable]="enderecoList" 
-                        [tableTitles]="enderecoTitle" 
-                        [tableItemOrder]="enderecoItemOrder"
-                        classStyles="table table-striped"
-                        (deleteElementId)="deleteEndereco($event)"
-                        elementToBeDeleted="enderecoId"
+            </div>
 
-                    ></app-table>
-                }
-            
+            } @else {
+            <app-table [dataTable]="enderecoList" [tableTitles]="enderecoTitle" [tableItemOrder]="enderecoItemOrder"
+                classStyles="table table-striped" (deleteElementId)="deleteEndereco($event)"
+                elementToBeDeleted="enderecoId"></app-table>
+            }
+
         </div>
 
         <div class="row p-4">
@@ -159,9 +170,10 @@
                 <button routerLink="/" class="btn btn-primary mt-5">Voltar</button>
             </div>
             <div class="col-6 d-flex justify-content-end">
-                <button class="btn btn-primary mt-5" type="submit" [disabled]="pessoaForm.invalid" (click)="onSubmit()">Salvar</button>
+                <button class="btn btn-primary mt-5" type="submit" [disabled]="pessoaForm.invalid"
+                    (click)="onSubmit()">Salvar</button>
             </div>
         </div>
     </div>
-    
+
 </div>

@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { PhonePipe } from '../../../shared/pipes/phone.pipe';
 
 @Component({
   selector: 'app-table',
   standalone: true,
-  imports: [RouterLink, CommonModule],
+  imports: [RouterLink, CommonModule, PhonePipe],
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss'
 })

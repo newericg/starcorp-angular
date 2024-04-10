@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { PessoasService } from '../../../core/services/pessoas.service';
 import { ApiHttpService } from '../../../core/services/api-http.service';
 import { HttpClientModule } from '@angular/common/http';
