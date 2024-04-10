@@ -2,9 +2,13 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.2.
 
+## Working live on https://6615a5abf4ef480008939a81--bright-sopapillas-d41b2e.netlify.app/ (if apikey still valid)
+
 ## Development server
 
-edit apiKey in environment.ts on root folder for a valid key
+edit **apiKey** in environment.ts on root folder for a valid key
+
+run npm install to install all packages
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
