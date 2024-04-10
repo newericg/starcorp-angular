@@ -2,7 +2,7 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.2.
 
-## Working live on https://6615a5abf4ef480008939a81--bright-sopapillas-d41b2e.netlify.app/ (if apikey still valid)
+## Working live on https://starcorp-angular.netlify.app/ (if apikey still valid)
 
 ## Development server
 
