@@ -163,6 +163,7 @@ export class FormComponent implements OnInit, AfterViewChecked {
   onSubmitEndereco() {
     this.enderecoService.postEndereco(this.enderecoForm.value)
     window.location.reload()
+
   }
 
 

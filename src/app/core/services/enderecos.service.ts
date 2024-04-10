@@ -41,9 +41,11 @@ export class EnderecoService {
 			, this.headers
 		).subscribe({
 			next: (data: any) => {
+				console.log(data)
 				this.toastComponent.toastService.show('Salvo!', `Endereço adicionado com sucesso!`, 'text-bg-success')
 			},
 			error: (err: any) => {
+				console.log(err)
 				this.toastComponent.toastService.show('Erro ao salvar!', `${err.error.errors[0]}`, 'text-bg-danger')
 			}
 		})
